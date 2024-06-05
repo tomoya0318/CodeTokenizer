@@ -1,4 +1,3 @@
-import sys
 from collections import Counter
 from antlr4 import TerminalNode, InputStream, CommonTokenStream
 from antlr4.error.ErrorListener import ConsoleErrorListener
@@ -18,65 +17,18 @@ class TokeNizer():
             self.STRING_TAG = "tstring_content"
             self.NUMBER_TAG = "int"
             return
-        if self.LANGUAGE == "Go":
-            self.IDENTIFIER_TAG = "IDENT"
-            self.STRING_TAG = "STRING"
-            self.NUMBER_TAG = "INT"
-            return
 
         if self.LANGUAGE == "Python":
-            from .grammers.Python.Python3Parser import Python3Parser as Parser
-            from .grammers.Python.Python3Lexer import Python3Lexer as Lexer
+            from codetokenizer.Python.Python3Parser import Python3Parser as Parser
+            from codetokenizer.Python.Python3Lexer import Python3Lexer as Lexer
             self.IDENTIFIER_TAG = "NAME"
             self.STRING_TAG = "STRING"  
             self.NUMBER_TAG = "NUMBER"
             self.VOCABULARY = Parser.symbolicNames
-        elif self.LANGUAGE == "Java":
-            from .grammers.Java.JavaParser import JavaParser as Parser
-            from .grammers.Java.JavaLexer import JavaLexer as Lexer
-            self.IDENTIFIER_TAG = "IDENTIFIER"
-            self.STRING_TAG = "STRING_LITERAL"
-            self.NUMBER_TAG = "DECIMAL_LITERAL"
-            self.VOCABULARY = Parser.symbolicNames
-        elif self.LANGUAGE == "JavaScript":
-            from .grammers.JavaScript.JavaScriptParser import JavaScriptParser as Parser
-            from .grammers.JavaScript.JavaScriptLexer import JavaScriptLexer as Lexer
-            self.VOCABULARY = Parser.symbolicNames
-            self.IDENTIFIER_TAG = "Identifier"
-            self.STRING_TAG = "StringLiteral"
-            self.NUMBER_TAG = "DecimalLiteral"
-        elif self.LANGUAGE == "CPP":
-            from .grammers.CPP.CPP14Parser import CPP14Parser as Parser
-            from .grammers.CPP.CPP14Lexer import CPP14Lexer as Lexer
-            self.VOCABULARY = Parser.symbolicNames
-            self.IDENTIFIER_TAG = "Identifier"
-            self.STRING_TAG = "Stringliteral"
-            self.NUMBER_TAG = "Integerliteral"
-        elif self.LANGUAGE == "PHP":
-            from .grammers.PHP.PhpParser import PhpParser as Parser
-            from .grammers.PHP.PhpLexer import PhpLexer as Lexer
-            self.VOCABULARY = Parser.symbolicNames
-            self.IDENTIFIER_TAG = "VarName"
-            self.STRING_TAG = "StringPart"
-            self.NUMBER_TAG = "Decimal"
-        elif self.LANGUAGE == "Dart":
-            from .grammers.Dart.Dart2Parser import Dart2Parser as Parser
-            from .grammers.Dart.Dart2Lexer import Dart2Lexer as Lexer
-            self.VOCABULARY = Parser.symbolicNames
-            self.IDENTIFIER_TAG = "IDENTIFIER"
-            self.STRING_TAG = "SingleLineString"
-            self.NUMBER_TAG = "NUMBER"
-        elif self.LANGUAGE == "R":
-            from .grammers.R.RParser import RParser as Parser
-            from .grammers.R.RLexer import RLexer as Lexer
-            self.VOCABULARY = Parser.symbolicNames
-            self.IDENTIFIER_TAG = "ID"
-            self.STRING_TAG = "STRING"
-            self.NUMBER_TAG = "INT"
         else:
             print("Unknown Language, so solve as Python")
-            from .grammers.Python.Python3Parser import Python3Parser as Parser
-            from .grammers.Python.Python3Lexer import Python3Lexer as Lexer
+            from .Python.Python3Parser import Python3Parser as Parser
+            from .Python.Python3Lexer import Python3Lexer as Lexer
             self.VOCABULARY = Parser.symbolicNames
 
         self.Parser = Parser

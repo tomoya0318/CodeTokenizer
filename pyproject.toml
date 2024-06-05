@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "codetokenizer"
+version = "0.1.0"
+description = "A library for tokenizing code"
+authors = ["tomoya-n <s266227@wakayama-u.ac.jp>"]
+readme = "README.md"
+packages = [
+    { include = "codetokenizer" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+antlr4-python3-runtime = "4.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
